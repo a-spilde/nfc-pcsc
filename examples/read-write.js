@@ -62,6 +62,29 @@ nfc.on('reader', async reader => {
 		}
 
 
+		try {
+
+			// Determine the block size of the tag
+			const blockSize = 4;
+
+			// Calculate the number of blocks needed to store "hi mom"
+			const numBlocks = Math.ceil((Buffer.from("hi mom").length) / blockSize);
+
+			// Allocate a buffer to store the data with the appropriate size
+			const data = Buffer.allocUnsafe(numBlocks * blockSize).fill(0);
+
+			// Write "hi mom" to the data buffer
+			data.write("hi mom");
+
+			// Write the data to the tag, starting from block 4
+			await reader.write(4, data);
+
+			pretty.info(`data written`, reader, data);
+
+		} catch (err) {
+			pretty.error(`error when writing data`, reader, err);
+		}
+
 		// example write 4 bytes containing 16bit integer
 		// !!! note that we don't need 16 bytes - 16bit integer takes just 2 bytes !!!
 		try {

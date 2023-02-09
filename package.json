@@ -47,10 +47,14 @@
     "example-uid-logger": "node -r @babel/register examples/uid-logger.js",
     "example-without-auto": "node -r @babel/register examples/without-auto.js",
     "prepack": "yarn build && yarn test",
-    "test": "cross-env NODE_ENV=test ava test/tests.js --verbose"
+    "test": "cross-env NODE_ENV=test ava test/tests.js --verbose",
+    "read-guid": "node -r @babel/register examples/read-guid.js",
+    "write-guid": "node -r @babel/register examples/write-guid.js"
   },
   "dependencies": {
-    "@pokusew/pcsclite": "^0.6.0"
+    "@pokusew/pcsclite": "^0.6.0",
+    "@taptrack/ndef": "^1.0.3",
+    "nfccard-tool": "^0.1.1"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
